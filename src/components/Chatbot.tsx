@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Send, Bot, User, Loader2 } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 
 export default function Chatbot({ setResumeData, resumeData }: { setResumeData: any, resumeData: any }) {
   const [messages, setMessages] = useState<{role: 'user'|'model', content: string}[]>([
@@ -105,10 +106,17 @@ export default function Chatbot({ setResumeData, resumeData }: { setResumeData: 
                 borderTopLeftRadius: m.role === 'user' ? '1rem' : 0,
                 maxWidth: '80%',
                 boxShadow: 'var(--shadow-sm)',
-                lineHeight: 1.5,
-                fontSize: '0.95rem'
+                lineHeight: 1.6,
+                fontSize: '0.95rem',
+                overflowWrap: 'break-word'
             }}>
-                {m.content}
+                {m.role === 'user' ? (
+                    m.content
+                ) : (
+                    <div className="markdown-body chatbot-markdown">
+                        <ReactMarkdown>{m.content}</ReactMarkdown>
+                    </div>
+                )}
             </div>
           </div>
         ))}
@@ -161,6 +169,11 @@ export default function Chatbot({ setResumeData, resumeData }: { setResumeData: 
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
+        .chatbot-markdown p { margin-bottom: 0.75rem; }
+        .chatbot-markdown p:last-child { margin-bottom: 0; }
+        .chatbot-markdown ul, .chatbot-markdown ol { padding-left: 1.5rem; margin-bottom: 0.75rem; }
+        .chatbot-markdown li { margin-bottom: 0.25rem; }
+        .chatbot-markdown strong { color: var(--primary-color); font-weight: 600; }
       `}</style>
     </div>
   );
