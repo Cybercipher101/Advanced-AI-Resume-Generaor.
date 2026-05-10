@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://via.placeholder.com/1200x300/3b82f6/ffffff?text=Advanced+AI+Resume+Generator" alt="Resume Generator Banner" />
+  <img src="./public/resume_generator_banner.png" alt="Resume Generator Banner" width="100%" />
 
   <br />
   <br />
